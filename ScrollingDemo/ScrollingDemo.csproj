@@ -43,7 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\Screens\ScreenBase.cs" />
+    <Compile Include="Lib\Screens\MainScreen.cs" />
+    <Compile Include="Lib\Screens\StartScreen.cs" />
+    <Compile Include="Lib\Screens\LoadScreen.cs" />
+    <Compile Include="Lib\Game.cs" />
     <Compile Include="Lib\ConsoleCanvas.cs" />
+    <Compile Include="Lib\Interface\IScreen.cs" />
     <Compile Include="Lib\Interface\IObject.cs" />
     <Compile Include="Lib\Interface\ICanvas.cs" />
     <Compile Include="Program.cs" />

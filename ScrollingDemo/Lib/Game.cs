@@ -14,11 +14,13 @@ namespace ScrollingDemo {
       screen.Render();
         
       Thread gameLoop = new Thread(new ThreadStart(() => {
-        while (true) {
-          System.Threading.Thread.Sleep(2000);
+        Thread.Sleep(50);
 
-          screen = new MainScreen(_Canvas);
-          screen.Render();
+        screen = new MainScreen(_Canvas);
+        screen.Render();
+
+        while (true) {
+        
         }
       }));
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ScrollingDemo {
   class ConsoleCanvas : ICanvas {
@@ -10,8 +11,20 @@ namespace ScrollingDemo {
     }
 
     public void RenderObj(IObject obj) {
-      RemovePos(obj.GetGraphic(), obj.GetX(), obj.GetY());
-      WritePos(obj.GetGraphic(), obj.GetX(), obj.GetY());
+      int lowerBound = 10;
+      int upperBound = 20;
+
+      for (int i = lowerBound; i <= upperBound; i++) {
+        if (i < obj.GetY() || i > obj.GetY() + obj.GetHeight()) {
+          WritePos("#", obj.GetX(), i);
+        } else {
+          WritePos(obj.GetGraphic(), obj.GetX(), obj.GetY());
+        }
+      }
+
+      for (int i = 0; i <= obj.GetHeight(); i++) {
+        WritePos(obj.GetGraphic(), obj.GetX(), obj.GetY() + i);
+      }
     }
 
     public void MoveObj(IObject obj, int incrX, int incrY) {
@@ -97,6 +110,23 @@ namespace ScrollingDemo {
 
     public int CanvasHeight() {
       return Console.WindowHeight;
+    }
+
+    public void Fill(char graphic) {
+      StringBuilder sb = new StringBuilder();
+      
+      for (int y = 0; y < CanvasHeight(); y++) {
+        for (int x = 0; x < CanvasWidth(); x++) {
+          sb.Append(graphic);
+
+          if (x == CanvasWidth() - 2) {
+            sb.Append("\n");
+            break;
+          }
+        }
+      }
+
+      WritePos(sb.ToString(), 0, 0);
     }
   }
 }

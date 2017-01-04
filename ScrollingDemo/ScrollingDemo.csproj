@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\Blocks\Block.cs" />
     <Compile Include="Lib\Screens\ScreenBase.cs" />
     <Compile Include="Lib\Screens\MainScreen.cs" />
     <Compile Include="Lib\Screens\StartScreen.cs" />

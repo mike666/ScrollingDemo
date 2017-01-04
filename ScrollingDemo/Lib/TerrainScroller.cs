@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace ScrollingDemo {
@@ -11,11 +12,11 @@ namespace ScrollingDemo {
     }
 
     public void Start() {
-      List<int> commands = new List<int> { 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+      TunnelBuilder tunnelBuilder = new TunnelBuilder();
+      Tunnel tunnel = tunnelBuilder.GetTunnel();
+      List<TunnelFrame> tunnelFrames = tunnel.TunnelFrames;     
 
-      List<IObject> terrainObjects = BuildTerrainObjects(commands, 2, 10);
-
-      RenderTerrain(_Canvas, terrainObjects);
+      RenderTerrain(_Canvas, tunnel);
      
       _ScrollLoop = new Thread(new ThreadStart(() => {
 
@@ -25,53 +26,37 @@ namespace ScrollingDemo {
               break;
             }
 
-            if (i < terrainObjects.Count) {
-              terrainObjects[i].SetPos(i, terrainObjects[i].GetY());
+            if (i < tunnelFrames.Count) {
+              tunnelFrames[i].SetPos(i, tunnelFrames[i].GetY());
 
-             _Canvas.RenderObj(terrainObjects[i]);
+              RenderTunnelFrame(_Canvas, tunnelFrames[i]);
             }
           }
 
           Thread.Sleep(40);
-          terrainObjects = SlideItems(terrainObjects);
+          tunnelFrames = SlideFrames(tunnelFrames);
 
         }
       }));
 
       _ScrollLoop.Start();
     }
-        
-    protected List<IObject> BuildTerrainObjects(List<int> commands, int objHeight, int upperBoundY) {
-      List<IObject> terrainObjects = new List<IObject>();
-
-      int xPos = 0;
-
-      foreach (int command in commands) {
-        int yPos = upperBoundY + command;
-
-        terrainObjects.Add(new Block(" ", xPos, yPos, objHeight));
-
-        xPos++;
-      }
-
-      return terrainObjects;
-    }
-
-    private void RenderTerrain(ICanvas canvas, List<IObject> terrainObjects) {
+    
+    private void RenderTerrain(ICanvas canvas, Tunnel tunnel) {
       canvas.Clear();
       canvas.Fill('#');
 
-      foreach (IObject obj in terrainObjects) {
+      foreach (TunnelFrame obj in tunnel.TunnelFrames) {
         if (obj.GetX() == canvas.CanvasWidth() - 1) {
           break;
         }
 
-        canvas.RenderObj(obj);
+        RenderTunnelFrame(_Canvas, obj);
       }
     }
 
-    private List<IObject> SlideItems(List<IObject> items) {
-      List<IObject> toReturn = new List<IObject>();
+    private List<TunnelFrame> SlideFrames(List<TunnelFrame> items) {
+      List<TunnelFrame> toReturn = new List<TunnelFrame>();
 
       toReturn = items.GetRange(1, items.Count - 1);
       toReturn.Add(items[0]);
@@ -79,5 +64,21 @@ namespace ScrollingDemo {
       return toReturn;
     }
 
+    public void RenderTunnelFrame(ICanvas canvas, TunnelFrame obj) {
+      int lowerBound = 10;
+      int upperBound = 20;
+
+      for (int i = lowerBound; i <= upperBound; i++) {
+        if (i < obj.GetY() || i > obj.GetY() + obj.GetHeight()) {
+          canvas.WritePos("#", obj.GetX(), i);
+        } else {
+          canvas.WritePos(obj.GetGraphic(), obj.GetX(), obj.GetY());
+        }
+      }
+
+      for (int i = 0; i <= obj.GetHeight(); i++) {
+        canvas.WritePos(obj.GetGraphic(), obj.GetX(), obj.GetY() + i);
+      }
+    }
   }
 }

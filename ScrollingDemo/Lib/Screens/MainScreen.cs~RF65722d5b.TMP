@@ -1,0 +1,47 @@
+﻿using System.Collections.Generic;
+using System.Threading;
+
+namespace ScrollingDemo {
+  class MainScreen : ScreenBase {
+    public MainScreen(ICanvas canvas) : base(canvas) { }
+
+    public override void Render() {
+      _Canvas.Clear();
+
+      _Canvas.Fill('#');
+
+      List<string> toScroll = new List<string>() { " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x", " ", " ", "x", "x" };
+
+      int scrollIndex = 0;
+      foreach(string s in toScroll) {
+        if (scrollIndex == _Canvas.CanvasWidth() - 1) {
+          break;
+        }
+
+        _Canvas.WritePos(s, scrollIndex, 10);
+
+        scrollIndex++;
+      }
+
+      Thread scrollLoop = new Thread(new ThreadStart(() => {
+               
+        while (true) {
+          for (int i = 1; i <= _Canvas.CanvasWidth(); i++) {
+            if (i == _Canvas.CanvasWidth()) {
+              i = 1;
+            }
+
+            _Canvas.WritePos("ww", i - 1, 10);
+          
+          }
+
+          Thread.Sleep(100);
+        }
+
+      }));
+
+      scrollLoop.Start();
+    }
+
+  }
+}

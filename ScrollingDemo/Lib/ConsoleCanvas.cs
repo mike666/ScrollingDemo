@@ -11,20 +11,8 @@ namespace ScrollingDemo {
     }
 
     public void RenderObj(IObject obj) {
-      int lowerBound = 10;
-      int upperBound = 20;
-
-      for (int i = lowerBound; i <= upperBound; i++) {
-        if (i < obj.GetY() || i > obj.GetY() + obj.GetHeight()) {
-          WritePos("#", obj.GetX(), i);
-        } else {
-          WritePos(obj.GetGraphic(), obj.GetX(), obj.GetY());
-        }
-      }
-
-      for (int i = 0; i <= obj.GetHeight(); i++) {
-        WritePos(obj.GetGraphic(), obj.GetX(), obj.GetY() + i);
-      }
+      RemovePos(obj.GetGraphic(), obj.GetX(), obj.GetY());
+      WritePos(obj.GetGraphic(), obj.GetX(), obj.GetY());
     }
 
     public void MoveObj(IObject obj, int incrX, int incrY) {

@@ -1,16 +1,14 @@
 ﻿namespace ScrollingDemo {
-  class Block : IObject {
+  public class Block : IObject {
 
     protected string _Graphic = "";
     protected int _X = 0;
     protected int _Y = 0;
-    protected int _Height = 0;
 
-    public Block(string graphic, int x, int y, int height) {
+    public Block(string graphic, int x, int y) {
       SetGraphic(graphic);
       _X = x;
       _Y = y;
-      _Height = height;
     }
 
     public void SetGraphic(string graphic) {
@@ -27,10 +25,6 @@
 
     public int GetY() {
       return _Y;
-    }
-
-    public int GetHeight() {
-      return _Height;
     }
 
     public void SetPos(int x, int y) {

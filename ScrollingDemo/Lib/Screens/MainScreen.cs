@@ -11,9 +11,9 @@ namespace ScrollingDemo {
 
       _Canvas.Fill('#');
            
-      List<int> commands = new List<int> { 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+      List<int> commands = new List<int> { 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-      List<Block> toScroll = new List<Block>();
+      List<IObject> toScroll = new List<IObject>();
 
       int scrollIndex = 0;
       
@@ -25,7 +25,7 @@ namespace ScrollingDemo {
       }
 
 
-      foreach (Block obj in toScroll) {
+      foreach (IObject obj in toScroll) {
         if (obj.GetX() == _Canvas.CanvasWidth() - 1) {
           break;
         }
@@ -48,7 +48,7 @@ namespace ScrollingDemo {
             }
           }
 
-          Thread.Sleep(60);
+          Thread.Sleep(40);
           toScroll = Slide(toScroll);
 
         }
@@ -57,8 +57,8 @@ namespace ScrollingDemo {
       scrollLoop.Start();
     }
 
-    private List<Block> Slide(List<Block> items) {
-      List<Block> toReturn = new List<Block>();
+    private List<IObject> Slide(List<IObject> items) {
+      List<IObject> toReturn = new List<IObject>();
 
       toReturn = items.GetRange(1, items.Count - 1);
       toReturn.Add(items[0]);

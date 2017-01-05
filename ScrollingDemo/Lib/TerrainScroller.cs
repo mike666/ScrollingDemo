@@ -5,18 +5,18 @@ using System.Threading;
 namespace ScrollingDemo {
   public class TerrainScroller : IScroller {
     private ICanvas _Canvas;
+    private ITunnel _Tunnel;
     private Thread _ScrollLoop;
 
-    public TerrainScroller(ICanvas canvas) {
+    public TerrainScroller(ICanvas canvas, ITunnel tunnel) {
       _Canvas = canvas;
+      _Tunnel = tunnel;
     }
 
     public void Start() {
-      TunnelBuilder tunnelBuilder = new TunnelBuilder();
-      Tunnel tunnel = tunnelBuilder.GetTunnel();
-      List<TunnelFrame> tunnelFrames = tunnel.TunnelFrames;     
+      List<TunnelFrame> tunnelFrames = _Tunnel.TunnelFrames;     
 
-      RenderTerrain(_Canvas, tunnel);
+      RenderTerrain(_Canvas, _Tunnel);
      
       _ScrollLoop = new Thread(new ThreadStart(() => {
 
@@ -42,7 +42,7 @@ namespace ScrollingDemo {
       _ScrollLoop.Start();
     }
     
-    private void RenderTerrain(ICanvas canvas, Tunnel tunnel) {
+    private void RenderTerrain(ICanvas canvas, ITunnel tunnel) {
       canvas.Clear();
       canvas.Fill('#');
 

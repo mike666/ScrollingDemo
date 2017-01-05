@@ -1,19 +1,12 @@
 ﻿using System.Collections.Generic;
 
 namespace ScrollingDemo {
-  public class Tunnel {
-    private List<TunnelFrame> _TunnelFrames;
+  public class Tunnel : ITunnel {
 
-    public List<TunnelFrame> TunnelFrames {
-      get { return _TunnelFrames; }
-    }
+    public List<TunnelFrame> TunnelFrames { get; private set; }
 
     public Tunnel(List<TunnelFrame> tunnelFrames) {
-      _TunnelFrames = tunnelFrames;
-    }
-
-    public Tunnel() {
-      _TunnelFrames = new List<TunnelFrame>();
+      TunnelFrames = tunnelFrames;
     }
   }
 }

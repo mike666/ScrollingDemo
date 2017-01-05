@@ -16,7 +16,7 @@ namespace ScrollingDemo {
       Thread gameLoop = new Thread(new ThreadStart(() => {
         Thread.Sleep(50);
 
-        screen = new MainScreen(_Canvas);
+        screen = new MainScreen(_Canvas, GetTunnel());
         screen.Render();
 
         while (true) {
@@ -25,6 +25,28 @@ namespace ScrollingDemo {
       }));
 
       gameLoop.Start();
+    }
+
+    private ITunnel GetTunnel() {
+      TunnelBuilder tunnelBuilder = new TunnelBuilder();
+
+      tunnelBuilder.Forward(10);
+      tunnelBuilder.Down();
+      tunnelBuilder.Forward(5);
+      tunnelBuilder.Down();
+      tunnelBuilder.Forward(10);
+      tunnelBuilder.Up();
+      tunnelBuilder.Forward(10);
+      tunnelBuilder.Down();
+      tunnelBuilder.Forward(2);
+      tunnelBuilder.Down();
+      tunnelBuilder.Forward(20);
+      tunnelBuilder.Up();
+      tunnelBuilder.Forward(20);
+      tunnelBuilder.Up();
+      tunnelBuilder.Forward(20);
+
+      return tunnelBuilder.GetTunnel();
     }
   }
 }

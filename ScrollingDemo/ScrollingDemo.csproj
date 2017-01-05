@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\Blocks\TunnelFrame.cs" />
+    <Compile Include="Lib\Interfaces\ITunnel.cs" />
     <Compile Include="Lib\Tunnel\TunnelBuilder.cs" />
     <Compile Include="Lib\Tunnel\Tunnel.cs" />
     <Compile Include="Lib\TerrainScroller.cs" />

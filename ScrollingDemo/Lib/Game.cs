@@ -11,13 +11,13 @@ namespace ScrollingDemo {
     public void Start() {
       IScreen screen = new LoadScreen(_Canvas);
 
-      screen.Render();
+      screen.Render(new PlainBackground());
         
       Thread gameLoop = new Thread(new ThreadStart(() => {
-        Thread.Sleep(50);
+        Thread.Sleep(1000);
 
         screen = new MainScreen(_Canvas, GetTunnel());
-        screen.Render();
+        screen.Render(new TerrainBackground());
 
         while (true) {
         

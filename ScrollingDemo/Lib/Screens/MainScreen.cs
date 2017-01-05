@@ -6,9 +6,10 @@
       _Tunnel = tunnel;
     }
 
-    public override void Render() {
-        
-      IScroller scroller = new TerrainScroller(_Canvas, _Tunnel);
+    public override void Render(Ibackground background) {
+      base.Render(background);
+
+      TunnelScroller scroller = new TunnelScroller(_Canvas, _Tunnel);
 
       scroller.Start();     
     }

@@ -1,5 +1,5 @@
 ﻿namespace ScrollingDemo {
   public interface IScreen {
-    void Render();
+    void Render(Ibackground background);
   }
 }

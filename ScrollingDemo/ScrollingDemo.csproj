@@ -43,11 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\Backgrounds\TerrainBackground.cs" />
+    <Compile Include="Lib\Backgrounds\PlainBackground.cs" />
     <Compile Include="Lib\Blocks\TunnelFrame.cs" />
+    <Compile Include="Lib\Interfaces\IBackground.cs" />
     <Compile Include="Lib\Interfaces\ITunnel.cs" />
+    <Compile Include="Lib\Tunnel\TunnelScroller.cs" />
     <Compile Include="Lib\Tunnel\TunnelBuilder.cs" />
     <Compile Include="Lib\Tunnel\Tunnel.cs" />
-    <Compile Include="Lib\TerrainScroller.cs" />
     <Compile Include="Lib\Blocks\Block.cs" />
     <Compile Include="Lib\Interfaces\IScroller.cs" />
     <Compile Include="Lib\Screens\ScreenBase.cs" />

@@ -1,22 +1,21 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace ScrollingDemo {
-  public class TerrainScroller : IScroller {
+  public class TunnelScroller : IScroller {
     private ICanvas _Canvas;
     private ITunnel _Tunnel;
     private Thread _ScrollLoop;
 
-    public TerrainScroller(ICanvas canvas, ITunnel tunnel) {
+    public TunnelScroller(ICanvas canvas, ITunnel tunnel) {
       _Canvas = canvas;
       _Tunnel = tunnel;
     }
 
     public void Start() {
-      List<TunnelFrame> tunnelFrames = _Tunnel.TunnelFrames;     
+      List<TunnelFrame> tunnelFrames = _Tunnel.TunnelFrames;
 
-      RenderTerrain(_Canvas, _Tunnel);
+      RenderTunnel(_Canvas, _Tunnel);
      
       _ScrollLoop = new Thread(new ThreadStart(() => {
 
@@ -42,10 +41,7 @@ namespace ScrollingDemo {
       _ScrollLoop.Start();
     }
     
-    private void RenderTerrain(ICanvas canvas, ITunnel tunnel) {
-      canvas.Clear();
-      canvas.Fill('#');
-
+    private void RenderTunnel(ICanvas canvas, ITunnel tunnel) {
       foreach (TunnelFrame obj in tunnel.TunnelFrames) {
         if (obj.GetX() == canvas.CanvasWidth() - 1) {
           break;
@@ -64,7 +60,7 @@ namespace ScrollingDemo {
       return toReturn;
     }
 
-    public void RenderTunnelFrame(ICanvas canvas, TunnelFrame obj) {
+    private void RenderTunnelFrame(ICanvas canvas, TunnelFrame obj) {
       int lowerBound = 10;
       int upperBound = 20;
 

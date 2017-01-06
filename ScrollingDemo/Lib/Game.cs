@@ -16,7 +16,7 @@ namespace ScrollingDemo {
       Thread gameLoop = new Thread(new ThreadStart(() => {
         Thread.Sleep(1000);
 
-        screen = new MainScreen(_Canvas, GetTunnel());
+        screen = new MainScreen(_Canvas, new TunnelScroller(_Canvas, GetTunnel()));
         screen.Render(new TerrainBackground());
 
         while (true) {

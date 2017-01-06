@@ -1,17 +1,15 @@
 ﻿namespace ScrollingDemo {
   class MainScreen : ScreenBase {
-    private ITunnel _Tunnel;
+    private ITunnelScroller _TunnelScroller;
 
-    public MainScreen(ICanvas canvas, ITunnel tunnel) : base(canvas) {
-      _Tunnel = tunnel;
+    public MainScreen(ICanvas canvas, ITunnelScroller tunnelScroller) : base(canvas) {
+      _TunnelScroller = tunnelScroller;
     }
 
     public override void Render(Ibackground background) {
       base.Render(background);
-
-      TunnelScroller scroller = new TunnelScroller(_Canvas, _Tunnel);
-
-      scroller.Start();     
+           
+      _TunnelScroller.Start();     
     }
   }
 }

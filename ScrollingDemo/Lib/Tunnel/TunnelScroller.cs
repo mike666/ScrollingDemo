@@ -2,7 +2,7 @@
 using System.Threading;
 
 namespace ScrollingDemo {
-  public class TunnelScroller : IScroller {
+  public class TunnelScroller : ITunnelScroller {
     private ICanvas _Canvas;
     private ITunnel _Tunnel;
     private Thread _ScrollLoop;

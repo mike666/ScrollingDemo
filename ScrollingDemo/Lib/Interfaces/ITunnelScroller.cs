@@ -1,5 +1,5 @@
 ﻿namespace ScrollingDemo {
-  public interface IScroller {
+  public interface ITunnelScroller {
     void Start();
   }
 }

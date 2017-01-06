@@ -52,7 +52,7 @@
     <Compile Include="Lib\Tunnel\TunnelBuilder.cs" />
     <Compile Include="Lib\Tunnel\Tunnel.cs" />
     <Compile Include="Lib\Blocks\Block.cs" />
-    <Compile Include="Lib\Interfaces\IScroller.cs" />
+    <Compile Include="Lib\Interfaces\ITunnelScroller.cs" />
     <Compile Include="Lib\Screens\ScreenBase.cs" />
     <Compile Include="Lib\Screens\MainScreen.cs" />
     <Compile Include="Lib\Screens\StartScreen.cs" />

@@ -2,6 +2,7 @@
   public interface ICanvas {
     void RenderObj(IObject obj);
     bool ObjCanMove(IObject obj, int incrX, int incrY);
+    void MoveObj(IObject obj, int incrX, int incrY);
     void Clear();
     void ClearObj(IObject obj);
     void WritePos(string graphic, int x, int y);

@@ -28,7 +28,7 @@ namespace ScrollingDemo {
         WritePos(obj.GetGraphic(), newX, newY);
       }
     }
-
+       
     /// <summary>
     /// Overpaint the old hero
     /// </summary>

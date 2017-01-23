@@ -14,6 +14,7 @@ namespace ScrollingDemo {
     }
 
     public void Start(){
+     
       IScreen screen = _ScreenFactory.Create(Enumerations.Screen.Intro);
       
       screen.Render();
@@ -32,9 +33,10 @@ namespace ScrollingDemo {
 
         screen = _ScreenFactory.Create(Enumerations.Screen.Main);
         screen.Render();
-
+                
         while (true) {
-        
+        //  _Canvas.ClearObj(player);
+        //  _Canvas.RenderObj(player);
         }
       }));
 

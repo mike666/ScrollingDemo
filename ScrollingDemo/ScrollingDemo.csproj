@@ -47,7 +47,10 @@
     <Compile Include="Lib\Backgrounds\PlainBackground.cs" />
     <Compile Include="Lib\Blocks\TunnelFrame.cs" />
     <Compile Include="Lib\Enumerations.cs" />
+    <Compile Include="Lib\GameObjects\PlayerController.cs" />
+    <Compile Include="Lib\GameObjects\Player.cs" />
     <Compile Include="Lib\Interfaces\IBackground.cs" />
+    <Compile Include="Lib\Interfaces\IObjectController.cs" />
     <Compile Include="Lib\Interfaces\IScreenFactory.cs" />
     <Compile Include="Lib\Interfaces\ITunnel.cs" />
     <Compile Include="Lib\Screens\IntroScreen.cs" />

@@ -2,7 +2,8 @@
   class Program {
     static void Main(string[] args) {
       ICanvas canvas = new ConsoleCanvas();
-      ITunnelScroller tunnelScroller = new TunnelScroller(canvas, BuildTunnel());
+         
+      ITunnelScroller tunnelScroller = new TunnelScroller(canvas, BuildTunnel(), new PlayerController(canvas, new Player(0, 10)));
 
       Game game = new Game(canvas, new ScreenFactory(canvas, tunnelScroller));
 

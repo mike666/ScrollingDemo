@@ -6,17 +6,21 @@ namespace ScrollingDemo {
     private ICanvas _Canvas;
     private ITunnel _Tunnel;
     private Thread _ScrollLoop;
+    private IObjectController _PlayerController;
 
-    public TunnelScroller(ICanvas canvas, ITunnel tunnel) {
+    public TunnelScroller(ICanvas canvas, ITunnel tunnel, IObjectController playerController) {
       _Canvas = canvas;
       _Tunnel = tunnel;
+      _PlayerController = playerController;
     }
 
     public void Start() {
       List<TunnelFrame> tunnelFrames = _Tunnel.TunnelFrames;
-
+      
       RenderTunnel(_Canvas, _Tunnel);
-     
+
+      _PlayerController.Start();
+
       _ScrollLoop = new Thread(new ThreadStart(() => {
 
         while (true) {
@@ -32,9 +36,10 @@ namespace ScrollingDemo {
             }
           }
 
+          _Canvas.RenderObj(_PlayerController.GetObject());
+
           Thread.Sleep(40);
           tunnelFrames = SlideFrames(tunnelFrames);
-
         }
       }));
 
